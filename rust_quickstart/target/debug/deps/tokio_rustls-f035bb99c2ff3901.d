@@ -1,0 +1,11 @@
+/Users/dylan/repos/Rust-getting-started/rust_quickstart/target/debug/deps/tokio_rustls-f035bb99c2ff3901.rmeta: /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/lib.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/client.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/mod.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/handshake.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/server.rs
+
+/Users/dylan/repos/Rust-getting-started/rust_quickstart/target/debug/deps/libtokio_rustls-f035bb99c2ff3901.rlib: /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/lib.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/client.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/mod.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/handshake.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/server.rs
+
+/Users/dylan/repos/Rust-getting-started/rust_quickstart/target/debug/deps/tokio_rustls-f035bb99c2ff3901.d: /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/lib.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/client.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/mod.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/handshake.rs /Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/server.rs
+
+/Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/lib.rs:
+/Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/client.rs:
+/Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/mod.rs:
+/Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/common/handshake.rs:
+/Users/dylan/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-rustls-0.23.4/src/server.rs:
