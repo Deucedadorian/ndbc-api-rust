@@ -1,2 +1,0 @@
-export
-MONGODB_URI='mongodb+srv://dylan-admin:SqZnjq7aW3AYNRWo@cluster0.oczze.mongodb.net/?retryWrites=true&w=majority'
