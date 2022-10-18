@@ -7,7 +7,13 @@ use tokio;
 async fn main() -> Result<(), Box<dyn Error>> {
     let wave_data = get_wave_data().await;
 
-    println!("data = {:#?}", wave_data);
+    let wave_data_values = wave_data.expect("No wave data");
+    let wave_data_vector = wave_data_values.split(' ').collect::<Vec<&str>>();
+
+    println!("{:#?}", wave_data_vector);
+//    for value in wave_data_values {
+//        println!("{}", value)
+//    }
 
     // Load the MongoDB connection string from an environment variable:
     let client_uri =
@@ -20,18 +26,29 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .await?;
     let client = Client::with_options(options)?;
 
-    // Print the databases in our MongoDB cluster:
-    println!("Databases:");
-    for name in client.list_database_names(None, None).await? {
-        println!("- {}", name);
+    // Get a handle to a database.
+    let db = client.database("swell-ping");
+
+    // List the names of the collections in that database.
+    for collection_name in db.list_collection_names(None).await? {
+        println!("{}", collection_name);
     }
+
+    //database:
+
+    //let swell_data = client.database("swell-ping").collection("wave-data");
 
     Ok(())
 }
 
 async fn get_wave_data() -> Result<String, Box<dyn std::error::Error>> {
+    // use reqwest::header::{CONTENT_TYPE};
+
     let client = reqwest::Client::new();
-    let body = client.get("https://www.ndbc.noaa.gov/data/hourly2/hour_00.spec").send()
+    let body = client
+        .get("https://www.ndbc.noaa.gov/data/hourly2/hour_00.spec")
+        // .header(CONTENT_TYPE, "application/json")
+        .send()
         .await?
         .text()
         .await?;
