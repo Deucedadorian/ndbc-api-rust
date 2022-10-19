@@ -7,13 +7,13 @@ use tokio;
 async fn main() -> Result<(), Box<dyn Error>> {
     let wave_data = get_wave_data().await;
 
-    let wave_data_values = wave_data.expect("No wave data");
-    let wave_data_vector = wave_data_values.split(' ').collect::<Vec<&str>>();
+    let wave_data = wave_data.expect("No wave data");
 
-    println!("{:#?}", wave_data_vector);
-//    for value in wave_data_values {
-//        println!("{}", value)
-//    }
+//    println!("{}", wave_data);
+
+    let wave_data_vector = &wave_data.split("\n").collect::<Vec<&str>>();
+
+    println!("{:#?}", &wave_data_vector);
 
     // Load the MongoDB connection string from an environment variable:
     let client_uri =
