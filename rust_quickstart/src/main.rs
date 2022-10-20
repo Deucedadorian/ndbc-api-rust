@@ -9,11 +9,23 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let wave_data = wave_data.expect("No wave data");
 
-//    println!("{}", wave_data);
+    let wave_data = wave_data.split("\n").collect::<Vec<&str>>();
 
-    let wave_data_vector = &wave_data.split("\n").collect::<Vec<&str>>();
+//    println!("{:#?}", wave_data);
 
-    println!("{:#?}", &wave_data_vector);
+    let mut this_is_vec = Vec::new();
+ 
+    for (i, station) in 0..wave_data.len() {
+        println!("{}", i);
+        println!("{}", station);
+        let s_data : u16 = station;
+        if !s_data.starts_with("#") {
+            let v: Vec<&str> = wave_data[station].split_whitespace().collect::<Vec<&str>>();
+            this_is_vec.push(v);
+        }
+    }
+
+    println!("{:#?}", this_is_vec);
 
     // Load the MongoDB connection string from an environment variable:
     let client_uri =
