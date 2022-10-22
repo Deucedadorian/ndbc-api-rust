@@ -2,6 +2,7 @@ use mongodb::{Client, options::{ClientOptions, ResolverConfig}};
 use std::env;
 use std::error::Error;
 use tokio;
+use chrono::{DateTime, Utc};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -15,11 +16,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let mut this_is_vec = Vec::new();
  
-    for (i, station) in 0..wave_data.len() {
-        println!("{}", i);
-        println!("{}", station);
-        let s_data : u16 = station;
-        if !s_data.starts_with("#") {
+    for station in 0..wave_data.len() {
+       if wave_data[station].starts_with("#") == false {
             let v: Vec<&str> = wave_data[station].split_whitespace().collect::<Vec<&str>>();
             this_is_vec.push(v);
         }
@@ -54,11 +52,15 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 
 async fn get_wave_data() -> Result<String, Box<dyn std::error::Error>> {
-    // use reqwest::header::{CONTENT_TYPE};
+
+    let utc: DateTime<Utc> = Utc::now();
+    let hour = utc.format("%H").to_string();
+
+    let url: String = "https://www.ndbc.noaa.gov/data/hourly2/hour_".to_owned() + &hour + ".spec";
 
     let client = reqwest::Client::new();
     let body = client
-        .get("https://www.ndbc.noaa.gov/data/hourly2/hour_00.spec")
+        .get(url)
         // .header(CONTENT_TYPE, "application/json")
         .send()
         .await?
