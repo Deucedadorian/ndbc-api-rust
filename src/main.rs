@@ -1,4 +1,5 @@
 use mongodb::{Client, options::{ClientOptions, ResolverConfig}};
+use mongodb::bson::{doc, Document};
 use std::env;
 use std::error::Error;
 use tokio;
@@ -12,22 +13,18 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let wave_data = wave_data.split("\n").collect::<Vec<&str>>();
 
-//    println!("{:#?}", wave_data);
-
-    let mut this_is_vec = Vec::new();
- 
     for station in 0..wave_data.len() {
        if wave_data[station].starts_with("#") == false {
             let v: Vec<&str> = wave_data[station].split_whitespace().collect::<Vec<&str>>();
-            this_is_vec.push(v);
+            println!("{:?}", v);
         }
     }
 
-    println!("{:#?}", this_is_vec);
-
+    //database:
+    //
     // Load the MongoDB connection string from an environment variable:
     let client_uri =
-        env::var("MONGODB_URI").expect("You must set the MONGODB_URI environment var!");
+        env::var("MONGODB_URL").expect("You must set the MONGODB_URL environment var!");
 
     // A Client is needed to connect to MongoDB:
     // An extra line of code to work around a DNS issue on Windows:
@@ -43,10 +40,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
     for collection_name in db.list_collection_names(None).await? {
         println!("{}", collection_name);
     }
+    
+    let collection = db.collection::<Document>("wave-data");
 
-    //database:
-
-    //let swell_data = client.database("swell-ping").collection("wave-data");
+//    println!("the {:#?} collection has been selected.", collection);
 
     Ok(())
 }
@@ -55,13 +52,11 @@ async fn get_wave_data() -> Result<String, Box<dyn std::error::Error>> {
 
     let utc: DateTime<Utc> = Utc::now();
     let hour = utc.format("%H").to_string();
-
     let url: String = "https://www.ndbc.noaa.gov/data/hourly2/hour_".to_owned() + &hour + ".spec";
 
     let client = reqwest::Client::new();
     let body = client
         .get(url)
-        // .header(CONTENT_TYPE, "application/json")
         .send()
         .await?
         .text()
