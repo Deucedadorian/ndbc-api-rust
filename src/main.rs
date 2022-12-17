@@ -7,18 +7,18 @@ use chrono::{DateTime, Utc};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let wave_data = get_wave_data().await;
+    // let wave_data = get_wave_data().await;
 
-    let wave_data = wave_data.expect("No wave data");
+    // let wave_data = wave_data.expect("No wave data");
 
-    let wave_data = wave_data.split("\n").collect::<Vec<&str>>();
+    // let wave_data = wave_data.split("\n").collect::<Vec<&str>>();
 
-    for station in 0..wave_data.len() {
-       if wave_data[station].starts_with("#") == false {
-            let v: Vec<&str> = wave_data[station].split_whitespace().collect::<Vec<&str>>();
-            println!("{:?}", v);
-        }
-    }
+    // for station in 0..wave_data.len() {
+       // if wave_data[station].starts_with("#") == false {
+            // let v: Vec<&str> = wave_data[station].split_whitespace().collect::<Vec<&str>>();
+            // println!("{:?}", v);
+        // }
+    // }
 
     //database:
     //
